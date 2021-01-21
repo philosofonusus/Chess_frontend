@@ -53,7 +53,7 @@ const Room = () => {
     })
     return(
         <div className="game">
-            {game_status.startsWith("check") ? <h1 className="info">Check {game_status.split(" ")[1] === "w" ? white : black}</h1> : <h1 className="info">{gameMove} move</h1>}
+            {game_status.startsWith("check") && game_fen ? <h1 className="info">Check {game_status.split(" ")[1] === "w" ? white : black}</h1> : <h1 className="info">{gameMove} move</h1>}
             {game_fen && !gameOver ? <Board orientation={orientation} fen={game_fen} onDrop={onDropMove}/>
             : !gameOver ? <h1>Your room name is <span style={{textDecoration: 'underline'}}>{room}</span></h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
