@@ -55,7 +55,7 @@ const Room = () => {
             : !gameOver ? <h1>Copy this link and share with your friend</h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
             { game_fen && !gameOver ? <button onClick={() => socket.emit('surrender', {room, orientation})}>Surrender</button> : null}
-            {game_fen && !gameOver ? <h1>Last Move: {lastMove}</h1> : null}
+            {game_fen && !gameOver ? <h1>Last Move: {lastMove}</h1> : <h1 style={{visibility: "hidden"}}>Last Move</h1>}
         </div>
     )
 }
