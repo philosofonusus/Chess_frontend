@@ -1,35 +1,51 @@
-.App{
+.App {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  h1{
+  height: calc(100vh - 100px);
+
+  h1 {
     color: white;
     text-align: center;
   }
-}
-.join{
-  max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  input{
-    padding: 20px;
-    border: none;
-    width: 100%;
+  .game{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    button{
+      background-color: gray;
+      color: white;
+      padding: 10px 0;
+      margin-top: 15px;
+      font-weight: 600;
+    }
   }
-  button{
-    margin-top: 20px;
-    background-color:mediumaquamarine;
-    border-radius: 8px;
-    border: none;
+  .join {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      padding: 20px;
+      border: none;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: mediumaquamarine;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      justify-self: center;
+      padding: 20px 40px;
+      cursor: pointer;
+    }
+  }
+
+  a {
     color: white;
-    justify-self: center;
-    padding: 20px 40px;
-    cursor: pointer;
+    text-decoration: underline;
   }
-}
-a{
-  color: white;
-  text-decoration: underline;
 }

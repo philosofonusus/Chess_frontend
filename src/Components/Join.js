@@ -8,7 +8,7 @@ const Join = () => {
             <h1>
                 Join
             </h1>
-            <input value={room} type="text" onChange={e => setRoom(e.target.value)}/>
+            <input placeholder="Enter room name" value={room} type="text" onChange={e => setRoom(e.target.value)}/>
             <Link to={`/room/${room}`}>
                 <button>
                     Click to Join
