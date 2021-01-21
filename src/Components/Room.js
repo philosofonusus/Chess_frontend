@@ -14,6 +14,7 @@ const Room = () => {
     const [game_status, setGameStatus] = useState('ok')
     const [orientation, setOrientation] = useState(white)
     const [lastMove, setLastMove] = useState('')
+    const [gameMove, setGameMove] = useState(white)
     const [gameOver, setGameOver] = useState(false)
     const checkForPieceColor = (piece) => {
         return piece.startsWith('w') && orientation === white && piece || piece.startsWith('b') && orientation === black && piece
@@ -21,9 +22,11 @@ const Room = () => {
     const move = (sourceSquare, targetSquare) => {
         socket.emit('move', {move: {from: sourceSquare, to: targetSquare, promotion: 'q'}, idx: game_id, room}, ({fen}) => {
             setGameFen(fen)
+            setGameMove(gameMove === white ? black : white)
         })
     }
     const onDropMove = ({ sourceSquare, targetSquare, piece }) => {
+        if(sourceSquare === targetSquare) return
         if(checkForPieceColor(piece)){
             move(sourceSquare, targetSquare)
         }
@@ -50,7 +53,7 @@ const Room = () => {
     })
     return(
         <div className="game">
-            {game_status.startsWith("check") ? <h1 className="check_info">check {game_status.split(" ")[1] === "w" ? white : black}</h1> : null}
+            {game_status.startsWith("check") ? <h1 className="info">Check {game_status.split(" ")[1] === "w" ? white : black}</h1> : <h1 className="info">{gameMove} move</h1>}
             {game_fen && !gameOver ? <Board orientation={orientation} fen={game_fen} onDrop={onDropMove}/>
             : !gameOver ? <h1>Your room name is <span style={{textDecoration: 'underline'}}>{room}</span></h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
