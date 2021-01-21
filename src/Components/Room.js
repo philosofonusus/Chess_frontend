@@ -13,6 +13,7 @@ const Room = () => {
     const [game_id, setGameId] = useState(0)
     const [game_status, setGameStatus] = useState('ok')
     const [orientation, setOrientation] = useState(white)
+    const [lastMove, setLastMove] = useState('')
     const [gameOver, setGameOver] = useState(false)
     const checkForPieceColor = (piece) => {
         return piece.startsWith('w') && orientation === white && piece || piece.startsWith('b') && orientation === black && piece
@@ -30,9 +31,10 @@ const Room = () => {
     socket.on('orientation', ({orientation}) => {
         setOrientation(orientation)
     })
-    socket.on('game', ({fen, id, status}) => {
+    socket.on('game', ({fen, id, status, last_move}) => {
         setGameFen(fen)
         setGameId(id);
+        setLastMove(last_move)
         setGameStatus(status)
         if(game_status !== 'ok' && !game_status.startsWith('check')){
             setGameOver(true)
@@ -53,6 +55,7 @@ const Room = () => {
             : !gameOver ? <h1>Copy this link and share with your friend</h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
             { game_fen && !gameOver ? <button onClick={() => socket.emit('surrender', {room, orientation})}>Surrender</button> : null}
+            {game_fen && !gameOver ? <h1>Last Move: {lastMove}</h1> : null}
         </div>
     )
 }
