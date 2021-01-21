@@ -52,7 +52,7 @@ const Room = () => {
         <div className="game">
             {game_status.startsWith("check") ? <h1 className="check_info">check {game_status.split(" ")[1] === "w" ? white : black}</h1> : null}
             {game_fen && !gameOver ? <Board orientation={orientation} fen={game_fen} onDrop={onDropMove}/>
-            : !gameOver ? <h1>Your room name is {room} share it with your friend</h1> : null}
+            : !gameOver ? <h1>Your room name is <span style={{textDecoration: 'underline'}}>{room}</span></h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
             {gameOver ? <Link style={{textAlign: 'center'}} to="/">Go to home page</Link> : null}
             { game_fen && !gameOver ? <button onClick={() => socket.emit('surrender', {room, orientation})}>Surrender</button> : null}
