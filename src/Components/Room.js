@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import socketClient from 'socket.io-client'
 import Board from "./Board";
 
@@ -54,8 +54,9 @@ const Room = () => {
             {game_fen && !gameOver ? <Board orientation={orientation} fen={game_fen} onDrop={onDropMove}/>
             : !gameOver ? <h1>Copy this link and share with your friend</h1> : null}
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
+            {gameOver ? <Link style={{textAlign: 'center'}} to="/">Go to home page</Link> : null}
             { game_fen && !gameOver ? <button onClick={() => socket.emit('surrender', {room, orientation})}>Surrender</button> : null}
-            {game_fen && !gameOver ? <h1>Last Move: {lastMove}</h1> : <h1 style={{visibility: "hidden"}}>Last Move</h1>}
+            {game_fen && !gameOver && lastMove ? <h1>Last Move: {lastMove}</h1> : <h1 style={{visibility: "hidden"}}>Last Move</h1>}
         </div>
     )
 }
