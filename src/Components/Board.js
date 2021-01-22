@@ -2,7 +2,7 @@ import React from 'react'
 import Chessboard from "chessboardjsx";
 
 const Board = (props) => {
-    const width = window.innerWidth < 400 ? window.innerWidth < 320 ? 280 : 320 : 560
+    const width = window.innerWidth > 560 ? 560 : 320
     return(
         <Chessboard
             width={width}
