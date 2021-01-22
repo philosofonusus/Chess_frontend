@@ -5,7 +5,7 @@ const Board = (props) => {
     const width = window.innerWidth < 400 ? window.innerWidth < 320 ? 280 : 320 : 560
     return(
         <Chessboard
-            width={window}
+            width={width}
             position={props.fen}
             orientation={props.orientation}
             onDrop={props.onDrop}
