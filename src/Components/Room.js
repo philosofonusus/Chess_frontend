@@ -19,8 +19,9 @@ const Room = () => {
     const [gameOver, setGameOver] = useState(false)
 
     useEffect(() => {
-        setSquareStyles({[lastMove.from]: { backgroundColor: "rgba(255, 255, 0, 0.4)" }, [lastMove.to]: { backgroundColor: "rgba(255, 255, 0, 0.4)" }})
+        setSquareStyles({[lastMove.from]: { backgroundColor: "rgba(255, 255, 0, 0.4)" }, [lastMove.to]: { backgroundColor: "rgba(255, 255, 0, 0.4)" }, [selectedSquare]: { backgroundColor: "rgba(255, 255, 0, 0.4)" }})
     }, [lastMove, selectedSquare])
+
     const checkForPieceColor = (piece) => {
         return piece.startsWith('w') && orientation === white && piece || piece.startsWith('b') && orientation === black && piece
     }
@@ -29,7 +30,7 @@ const Room = () => {
     }
     const onSquareClick = square => {
         setSelectedSquare(square)
-        if(document.querySelector(`[data-squareid=${selectedSquare}]`).firstElementChild.firstElementChild?.dataset?.testid.startsWith(orientation[0])){
+        if(selectedSquare && document.querySelector(`[data-squareid=${selectedSquare}]`).firstElementChild.firstElementChild?.dataset?.testid.startsWith(orientation[0])){
             move(selectedSquare, square)
         }
     }
