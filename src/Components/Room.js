@@ -71,7 +71,6 @@ const Room = () => {
             { gameOver ? <h1>Game over {game_status} wins</h1> : null}
             { gameOver ? <Link style={{textAlign: 'center'}} to="/">Go to home page</Link> : null}
             { game_fen && !gameOver ? <button onClick={() => socket.emit('surrender', {room, orientation})}>Surrender</button> : null}
-            { lastMove && !gameOver? <h1>{`${lastMove.color === 'w' ? white : black} ${lastMove.from} to ${lastMove.to}`}</h1> : null}
         </div>
     )
 }
