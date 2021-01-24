@@ -32,6 +32,7 @@ const Room = () => {
         setSelectedSquare(square)
         if(selectedSquare && document.querySelector(`[data-squareid=${selectedSquare}]`).firstElementChild.firstElementChild?.dataset?.testid.startsWith(orientation[0])){
             move(selectedSquare, square)
+            setSelectedSquare('')
         }
     }
     const onDropMove = ({ sourceSquare, targetSquare, piece }) => {
